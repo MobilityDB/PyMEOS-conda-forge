@@ -1,0 +1,40 @@
+{% set name = "spans" %}
+{% set version = "1.1.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/Spans-{{ version }}.tar.gz
+  sha256: 7f3e94492ba131d5ff062a5d631424e613fbeb38bb7ea613d8fd11f6e755fd79
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+
+test:
+  imports:
+    - spans
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://www.github.com/runfalk/spans
+  summary: Continuous set support for Python
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - Diviloper
